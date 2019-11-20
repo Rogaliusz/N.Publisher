@@ -1,4 +1,7 @@
-$HEADER$namespace $NAMESPACE$
+namespace NPublisher.Tests.Messages
 {
-  public class $CLASS$ {$END$}
+    public class TestMessage : NMessage
+    {
+        
+    }
 }

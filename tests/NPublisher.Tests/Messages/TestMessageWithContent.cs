@@ -1,4 +1,19 @@
-$HEADER$namespace $NAMESPACE$
+using NUnit.Framework.Internal;
+
+namespace NPublisher.Tests.Messages
 {
-  public class $CLASS$ {$END$}
+    public class TestMessageWithContent : NMessage
+    {
+        public string Content { get; }
+
+        public TestMessageWithContent()
+        {
+            
+        }
+        
+        public TestMessageWithContent(string content)
+        {
+            Content = content;
+        }
+    }
 }
