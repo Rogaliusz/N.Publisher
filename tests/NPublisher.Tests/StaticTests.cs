@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using FluentAssertions;
+using NPublisher.Exceptions;
 using NPublisher.Tests.Messages;
 using NUnit.Framework;
 
@@ -49,6 +50,34 @@ namespace NPublisher.Tests
 
             result.Content.Should().Be(message.Content);
             result.Should().Be(message);
+        }
+        
+        [Test]
+        public void NPubilsher_Static_Should_ThrowExceptionOnNullAction()
+        {
+            Assert.Throws<NPublisherException>(() => NPublisher.SubscribeIt<TestMessageWithContent>(null));
+        }
+        
+        [Test]
+        public async Task NPubilsher_Static_Should_Unsubscribe()
+        {
+            var ts = new TaskCompletionSource<TestMessageForUnsubscribe>();
+            var ok = false;
+            var subscription = NPublisher.SubscribeIt<TestMessageForUnsubscribe>(x =>
+            {
+                ok = !ok;
+                ts.SetResult(x);
+            });
+            
+            NPublisher.PublishIt<TestMessageForUnsubscribe>();
+
+            var result = await ts.Task;
+            
+            NPublisher.UnsubscribeIt(subscription);
+            NPublisher.PublishIt<TestMessageForUnsubscribe>();
+
+            ok.Should().Be(true);
+
         }
     }
 }

@@ -47,15 +47,33 @@ namespace NPublisher
 
         public void Unsubscribe(NSubscription subscriptionToRemove)
         {
-            foreach (var subscriptions in _subscriptions.Values)
+            var subscriptions = _subscriptions.Values.FirstOrDefault(x => x.Contains(subscriptionToRemove));
+            if (subscriptions == null)
             {
-                foreach (var subscription in subscriptions.Where(subscription => subscription != subscriptionToRemove))
-                {
-                    subscriptions.Enqueue(subscription);
-                }
+                return;
             }
+
+            var queueCopy = new Queue<NSubscription>();
+            
+            while (subscriptions.Any())
+            {
+                queueCopy.Enqueue(subscriptions.Dequeue());
+            }
+
+            while (queueCopy.Any())
+            {
+                var sub = queueCopy.Dequeue();
+                if (sub == subscriptionToRemove)
+                {
+                    continue;
+                }
+                
+                subscriptions.Enqueue(sub);
+            }
+
+
         }
-        
+
         private Action<object> Convert<T>(Action<T> myActionT)
         {
             return myActionT == null 
