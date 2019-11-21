@@ -1,6 +1,6 @@
 using NUnit.Framework.Internal;
 
-namespace NPublisher.Tests.Messages
+namespace N.Publisher.Tests.Messages
 {
     public class TestMessageWithContent : NMessage
     {

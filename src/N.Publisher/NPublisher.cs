@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using NPublisher.Exceptions;
+using N.Publisher.Exceptions;
 
-namespace NPublisher
+namespace N.Publisher
 {
 
     public partial class NPublisher

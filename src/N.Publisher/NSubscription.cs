@@ -1,6 +1,6 @@
 using System;
 
-namespace NPublisher
+namespace N.Publisher
 {
     public class NSubscription : IDisposable
     {

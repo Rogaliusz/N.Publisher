@@ -1,10 +1,10 @@
 using System.Threading.Tasks;
 using FluentAssertions;
-using NPublisher.Exceptions;
-using NPublisher.Tests.Messages;
+using N.Publisher.Tests.Messages;
 using NUnit.Framework;
+using N.Publisher.Exceptions;
 
-namespace NPublisher.Tests
+namespace N.Publisher.Tests
 {
     public class StaticTests
     {
@@ -77,7 +77,6 @@ namespace NPublisher.Tests
             NPublisher.PublishIt<TestMessageForUnsubscribe>();
 
             ok.Should().Be(true);
-
         }
     }
 }

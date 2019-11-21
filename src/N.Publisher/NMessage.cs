@@ -1,4 +1,4 @@
-namespace NPublisher
+namespace N.Publisher
 {
     public abstract class NMessage
     {

@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace NPublisher.Exceptions
+namespace N.Publisher.Exceptions
 {
     public class NPublisherException : Exception
     {
